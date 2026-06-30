@@ -1,0 +1,30 @@
+name: CD
+on:
+  push:
+    branches: [main]
+jobs:
+  Docker-login:
+    runs-on: ubuntu-latest
+    steps:      
+      - uses: actions/checkout@v4
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with: 
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}  
+     
+      - name: Установвка QEMU
+        uses: docker/setup-qemu-action@v3
+      
+      - name: Установка buildx
+        uses: docker/setup-buildx-action@v3
+       
+      - name: Build and push docker images
+        uses: docker/build-push-action@v5
+        with:
+          context: ./module7
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            n1faz/my-app:latest
+            n1faz/my-app:${{ github.sha }}
