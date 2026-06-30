@@ -22,7 +22,7 @@ def test_ping_google_response_not_empty(client):
     response = client.get('/')
     assert len(response.data) > 0
 
-def test_ping_google_status_code(client):
-    """Тест: статус ответа 200"""
+def test_ping_google_success(client):
     response = client.get('/')
     assert response.status_code == 200
+    assert len(response.data) > 0
