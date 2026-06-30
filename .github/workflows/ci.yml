@@ -1,0 +1,13 @@
+name: CI
+on: 
+  pull_request:
+    branches: [main]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+      - run: cd module7 && pip install -r requirements.txt
+      - run: cd module7 && pytest
+
