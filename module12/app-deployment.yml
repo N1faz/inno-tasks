@@ -16,3 +16,7 @@ spec:
         - name: my-app
           image: my-app:k8s
           imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: myapp-configmap
+
