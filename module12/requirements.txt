@@ -1,0 +1,4 @@
+Flask==2.3.2
+ping3
+psycopg2-binary
+prometheus-client==0.19.0 
